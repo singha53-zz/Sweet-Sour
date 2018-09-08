@@ -19,11 +19,11 @@
       <h1>Sweet and Sour</h1>
       <h3>Make your reservation!</h3>
       <hr>
-      <a href="/">
+      <a href="/viewTables.html">
         <button class="btn btn-danger btn-lg">
           View Tables</button>
       </a>
-      <a href="/">
+      <a href="/home.html">
         <button class="btn btn-danger btn-lg">
           Home</button>
       </a>
@@ -68,7 +68,7 @@
             <br>
             <div class="text-right">
               <button type="submit" class="btn btn-primary btn-md" id="add-btn">
-                <span class="fa fa-fire"></span> Submit</button>
+                Submit</button>
             </div>
           </div>
         </div>
@@ -87,5 +87,25 @@
   </div>
 
 </body>
+
+<script type="text/javascript">
+  // Question: What does this code do?
+  $("#add-btn").on("click", function (event) {
+    event.preventDefault();
+    var newReservation = {
+      name: $("#name").val().trim(),
+      phone: $("#phone").val().trim(),
+      email: $("#email").val().trim(),
+      unique: $("#unique").val().trim()
+    };
+
+    // Question: What does this code do??
+    $.post("/api/reservations", newReservation)
+      .then(function (data) {
+        console.log("add.html", data);
+        alert("Adding reservation...");
+      });
+  });
+</script>
 
 </html>

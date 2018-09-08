@@ -94,15 +94,18 @@
     event.preventDefault();
     var newReservation = {
       name: $("#name").val().trim(),
-      phone: $("#phone").val().trim(),
+      phoneNumber: $("#phone").val().trim(),
       email: $("#email").val().trim(),
-      unique: $("#unique").val().trim()
+      uniqueID: $("#unique").val().trim()
     };
+    $("#name").val("");
+    $("#phone").val("");
+    $("#email").val("");
+    $("#unique").val("");
 
-    // Question: What does this code do??
+
     $.post("/api/reservations", newReservation)
       .then(function (data) {
-        console.log("add.html", data);
         alert("Adding reservation...");
       });
   });

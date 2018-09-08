@@ -68,5 +68,37 @@
         </a>
     </div>
 </body>
+<script type="text/javascript">
+
+  function runTableQuery() {
+
+    $.ajax({ url: "https://sour-n-sweet-backend.herokuapp.com/tables", method: "GET" })
+      .then(function (tableData) {
+
+        console.log(tableData);
+        console.log("------------------------------------");
+
+
+        for (var i = 0; i < tableData.length; i++) {
+
+          var tableList = $("#tableList");
+
+          var listItem = $("<li class='list-group-item mt-4'>");
+
+          listItem.append(
+            $("<h2>").text("Table #" + (i + 1)),
+            $("<hr>"),
+            $("<h2>").text("Name: " + tableData[i].name),
+            $("<h2>").text("Phone: " + tableData[i].phoneNumber),
+            $("<h2>").text("Email: " + tableData[i].email),
+            $("<h2>").text("ID: " + tableData[i].unique)
+          );
+
+          tableList.append(listItem);
+        }
+      });
+  }
+  runTableQuery();
+</script>
 
 </html>
